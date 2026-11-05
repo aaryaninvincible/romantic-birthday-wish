@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, Simmu ❤ | By Aryan</title>
+  <meta name="description" content="A romantic interactive birthday surprise for Simmu by Aryan, with memories, 3D diamond ring marriage proposal, and a magical hand-in-hand journey." />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700&family=Sacramento&family=Playfair+Display:ital,wght@0,600;1,400&family=Rozha+One&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet" />
+
+  <!-- Three.js for 3D Diamond Ring -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- GSAP & Plugins -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="locked-state">
+
+  <!-- Background Music: Tumhi Dekho Na -->
+  <audio id="bg-audio" loop preload="auto">
+    <source src="assets/bg_music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- Ambient Glowing Background Orbs & Canvas -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+  <canvas id="hearts-canvas"></canvas>
+  <canvas id="petals-canvas"></canvas>
+
+  <!-- Audio Controls Floating Pill -->
+  <div class="audio-widget glass-pill" id="audio-btn" title="Tumhi Dekho Na - Click to Play/Pause">
+    <div class="equalizer-bars">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <span class="audio-label">Tumhi Dekho Na 🎶</span>
+    <span class="music-icon">🎵</span>
+  </div>
+
+  <!-- Hidden Surprises & Shayari Drawer Toggle Button -->
+  <button class="surprises-btn glass-pill" id="open-vault-btn" title="Open Love Vault & Shayariya">
+    <span class="btn-heart-icon">💌</span>
+    <span>Love Shayari & Vault</span>
+  </button>
+
+  <!-- ==============================================
+       SCREEN 1: ACCESS OUR WORLD (LOCK SCREEN)
+       ============================================== -->
+  <section id="screen-lock" class="screen-view active">
+    <div class="glass-card lock-card">
+      <div class="lock-icon-wrap">
+        <div class="lock-glow-ring"></div>
+        <div class="lock-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="4" ry="4" fill="rgba(255,45,117,0.2)"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            <circle cx="12" cy="16" r="1.5" fill="#ff65a3"></circle>
+          </svg>
+        </div>
+      </div>
+
+      <h1 class="lock-title">Access Our World</h1>
+      <p class="lock-subtitle">A special place created just for Simmu <span class="neon-heart">❤</span></p>
+
+      <form id="lock-form" class="lock-form" onsubmit="return false;">
+        <div class="input-group">
+          <span class="input-icon">👤</span>
+          <input type="text" id="partner-name" value="Simmu" placeholder="Your Name" />
+        </div>
+
+        <div class="input-group">
+          <span class="input-icon">🔒</span>
+          <input type="password" id="secret-code" value="2208" placeholder="Special Passcode or Date" />
+          <button type="button" class="eye-toggle" id="eye-toggle" title="Show/Hide">👁️</button>
+        </div>
+
+        <p class="passcode-hint">Hint: For Aryan's Queen &bull; Press Unlock Surprise ✨</p>
+
+        <button type="submit" class="btn-pink-gradient unlock-btn" id="unlock-btn">
+          <span>Unlock Surprise & Music</span>
+          <span class="btn-heart">❤</span>
+        </button>
+      </form>
+
+      <div class="lock-footer">
+        <span>Made with love by Aryan for Simmu &bull; Tumhi Dekho Na 🎶</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       MAIN BIRTHDAY EXPERIENCE (UNLOCKED)
+       ============================================== -->
+  <main id="main-content" class="main-container hidden">
+
+    <!-- SCREEN 2: HERO BIRTHDAY WISH -->
+    <section id="screen-hero" class="content-section hero-section">
+      <div class="hero-inner">
+        <div class="sparkle-tag">✨ Happy Birthday, Meri Jaan Simmu ✨</div>
+        <h1 class="neon-birthday-text">
+          <span class="sub-script">Happy Birthday</span>
+          <span class="main-glow-name" id="display-name">Simmu</span>
+        </h1>
+        <div class="big-neon-heart pulse-animation">❤</div>
+        
+        <!-- Live Featured Love Shayari -->
+        <div class="hero-shayari-badge glass-panel">
+          <p class="hindi-shayari">"मेरा पागल सा प्यार हो तुम, मेरे इस दिल के इकलौते हकदार हो तुम... 💕"</p>
+          <span class="shayari-author">— Tumhara Aryan ❤</span>
+        </div>
+
+        <p class="hero-quote">
+          "Simmu baby, mujhe tumhare sath rehna bohot zyada acha lagta hai... Tum meri ho, aur main hamesha sirf aur sirf tumhara hoon."
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn-pink-gradient glow-cta" id="start-journey-btn">
+            <span>Unfold Our Memories</span>
+            <span class="heart-bounce">❤</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: OUR PRECIOUS MEMORIES (POLAROID GALLERY - ANIMATED & REAL) -->
+    <section id="screen-memories" class="content-section memories-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="title-heart">❤</span> Our Precious Memories <span class="title-heart">❤</span>
+        </h2>
+        <p class="section-sub">Cute animated snapshots & beautiful memories of Aryan & Simmu</p>
+
+        <!-- Toggle View Mode Pill -->
+        <div class="gallery-toggle-wrap">
+          <button class="toggle-mode-btn active" id="btn-show-animated">✨ Animated Style</button>
+          <button class="toggle-mode-btn" id="btn-show-real">📸 Real Photos</button>
+        </div>
+      </div>
+
+      <!-- Polaroid Grid -->
+      <div class="polaroid-grid" id="polaroids-container">
+        <!-- Polaroid 1 -->
+        <div class="polaroid-card tilt-left" data-caption="Better Together" data-note="Same eyes, more love. Every single second spent laughing with you is my greatest blessing, Simmu.">
+          <div class="pin-heart">📌</div>
+          <div class="polaroid-img-wrapper">
+            <img src="assets/anim_memory_1.png" alt="Better Together" class="polaroid-img" id="pol-img-1" />
+          </div>
+          <p class="polaroid-caption" id="pol-cap-1">Better Together 💕</p>
+          <div class="polaroid-tape"></div>
+        </div>
+
+        <!-- Polaroid 2 -->
+        <div class="polaroid-card tilt-straight" data-caption="You Make Life Soft" data-note="Resting on my shoulder under moonlight and fairy lights. You are my greatest peace, baby.">
+          <div class="pin-heart">📌</div>
+          <div class="polaroid-img-wrapper">
+            <img src="assets/anim_memory_2.png" alt="You Make Life Soft" class="polaroid-img" id="pol-img-2" />
+          </div>
+          <p class="polaroid-caption" id="pol-cap-2">You Make Life Soft 🌙</p>
+          <div class="polaroid-tape"></div>
+        </div>
+
+        <!-- Polaroid 3 -->
+        <div class="polaroid-card tilt-right" data-caption="Dancing In Sunshine" data-note="Holding hands, dancing under the warm sun, and laughing together like the world is ours.">
+          <div class="pin-heart">📌</div>
+          <div class="polaroid-img-wrapper">
+            <img src="assets/anim_memory_3.png" alt="Dancing in Sunshine" class="polaroid-img" id="pol-img-3" />
+          </div>
+          <p class="polaroid-caption" id="pol-cap-3">Holding Your Hand ☀️</p>
+          <div class="polaroid-tape"></div>
+        </div>
+
+        <!-- Polaroid 4 -->
+        <div class="polaroid-card tilt-left-subtle" data-caption="Cozy Cafe Moments" data-note="Hot coffee, endless sweet conversations, and falling in love with your eyes over and over again.">
+          <div class="pin-heart">📌</div>
+          <div class="polaroid-img-wrapper">
+            <img src="assets/anim_memory_4.jpg" alt="Cozy Cafe Moments" class="polaroid-img" id="pol-img-4" />
+          </div>
+          <p class="polaroid-caption" id="pol-cap-4">Warm Cafe Love ☕</p>
+          <div class="polaroid-tape"></div>
+        </div>
+      </div>
+
+      <div class="memories-cta-wrap">
+        <button class="btn-glass pill-btn" id="to-video-btn">
+          <span>Watch Our Special Video</span>
+          <span class="icon-play">▶</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 4: SPECIAL VIDEO / CINEMA FRAME -->
+    <section id="screen-video" class="content-section video-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="title-heart">❤</span> Our Special Movie <span class="title-heart">❤</span>
+        </h2>
+        <p class="section-sub">Every chapter of our journey feels like pure cinematic magic</p>
+      </div>
+
+      <div class="video-cinema-frame glass-panel">
+        <div class="video-wrapper" id="video-wrapper">
+          <video id="story-video-player" playsinline poster="assets/movie_poster.jpg" preload="metadata">
+            <source src="assets/our_story_video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div class="video-overlay" id="play-overlay">
+            <button class="glow-play-btn" id="play-btn" aria-label="Play Romantic Video">
+              <span class="play-triangle">▶</span>
+            </button>
+            <p class="video-prompt-text">Click to Play Our Story, Simmu</p>
+          </div>
+          <div class="video-ambient-glow"></div>
+        </div>
+
+        <!-- Video Controls Bar -->
+        <div class="video-controls glass-sub-bar">
+          <button class="ctrl-btn" id="ctrl-play-pause">▶</button>
+          <div class="scrubber-track" id="scrubber-track">
+            <div class="scrubber-fill" id="scrubber-fill"></div>
+            <div class="scrubber-thumb"></div>
+          </div>
+          <span class="time-code" id="time-display">00:00 / 00:00</span>
+          <button class="ctrl-btn" id="ctrl-sound">🔊</button>
+        </div>
+
+        <p class="video-quote">
+          "तुम्हारी मुस्कान में जो magic है Simmu, उससे हर ग़म भूल जाता हूँ... मेरी दुनिया में सिर्फ तुम हो, जिससे दिल से प्यार करता हूँ।"
+        </p>
+      </div>
+
+      <div class="video-cta-wrap">
+        <button class="btn-pink-gradient pill-btn" id="to-letter-btn">
+          <span>Read Aryan's Letter</span>
+          <span>✉️</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 5: LOVE LETTER (DEEP HINGLISH MESSAGE FROM ARYAN TO SIMMU) -->
+    <section id="screen-letter" class="content-section letter-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="title-heart">❤</span> Written With All My Heart <span class="title-heart">❤</span>
+        </h2>
+        <p class="section-sub">Dil ki har ek baat jo sirf tumhare liye hai, Simmu</p>
+      </div>
+
+      <!-- Sealed Envelope / Interactive Letter -->
+      <div class="envelope-container" id="envelope-container">
+        <div class="glass-envelope" id="envelope">
+          <div class="envelope-flap"></div>
+          <div class="wax-seal" id="wax-seal">
+            <span class="seal-heart">❤</span>
+            <span class="seal-glow"></span>
+          </div>
+          <div class="envelope-front">
+            <p class="envelope-to">For My Dearest Birthday Queen Simmu 💌</p>
+            <p class="envelope-hint">Click the wax seal to open Aryan's letter</p>
+          </div>
+        </div>
+
+        <!-- The Letter Card (Revealed on Open) -->
+        <div class="letter-card glass-panel" id="letter-card">
+          <div class="letter-feather">🪶</div>
+          <div class="letter-header">
+            <h3>Meri Jaan Simmu, Meri Duniya, Meri Sabkuch... ❤</h3>
+          </div>
+          <div class="letter-body">
+            <p>
+              Happy Birthday, meri jaan Simmu! Sabse pehle to I wish you all the happiness, smile and peace in this whole world.
+            </p>
+            <p>
+              Simmu baby, mujhe tumhare sath rehna bohot bohot zyada acha lagta hai... Sach kahun toh tumhare aane ke baad meri poori zindagi hi badal gayi hai.
+            </p>
+            <p>
+              Haan, main maanta hoon ki kabhi kabhi mujhse galtiyan ho jaati hain, par mera dil sirf aur sirf tumhara hai baby. Main tumse bohot hi zyada pyaar karta hoon... Tum meri ho aur main sirf aur sirf tumhara hoon.
+            </p>
+            <p>
+              Main kabhi bhi aapko hurt nahi karna chahta Simmu, hamesha sirf aur sirf aapko khush dekhna chahta hoon. Aur bas... I love you so much baby! ❤
+            </p>
+            <p>
+              Mujhe aapke sath har vo cheez karni hai jo maine sochi hai... Har ek adventure, har ek nayi jagah explore karni hai, har nayi cheez ko try karna hai. Pata nahi aap kab miloge mujhko, bas jaldi se jaldi milo taaki main aapke sath har vo cheez kar sakun jo maine sochi hai aapke sath karne ke liye.
+            </p>
+            <p>
+              Main aapko real me bohot zyada miss karta hoon... Sach me aapke bina reh pana ab mere liye namumkin lagta hai. Jaldi se jaldi aapse milna chahta hoon... Bas poori duniya ghoomna chahta hoon main aapke sath haathon mein haath daal ke! 🌍✨
+            </p>
+            <div class="letter-shayari-quote">
+              <p>
+                "सुनो जान मेरी एक बात मान लो, सफर लम्बा है हाथ थाम लो..!<br />
+                बहुत होंगे दुनिया में चाहने वाले तुझे, लेकिन मेरे लिए तू ही मेरी दुनिया है Simmu।"
+              </p>
+            </div>
+          </div>
+          <div class="letter-signoff">
+            <p>Happy Birthday, meri jaan! <span class="neon-heart">❤</span></p>
+            <p class="signature-name">Forever Yours, Aryan</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="letter-cta-wrap">
+        <button class="btn-pink-gradient pill-btn" id="to-cake-btn">
+          <span>Make a Birthday Wish 🎂</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 6: FIXED CELEBRATION BIRTHDAY CAKE & CANDLE BLOW -->
+    <section id="screen-cake" class="content-section cake-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="title-heart">🎂</span> Happy Birthday, Simmu! <span class="title-heart">✨</span>
+        </h2>
+        <p class="section-sub">Aankhein band karo, ek pyaari si wish maango aur candle blow karo!</p>
+
+        <!-- Cake Style Toggle -->
+        <div class="cake-style-toggle-wrap">
+          <button class="toggle-mode-btn active" id="btn-show-cute-cake">🎂 Cute 3D Cake</button>
+          <button class="toggle-mode-btn" id="btn-show-luxury-cake">✨ Grand Palace Cake</button>
+        </div>
+      </div>
+
+      <div class="cake-main-stage glass-panel">
+        
+        <!-- View 1: Beautifully Proportioned Cute 3D Tiered Cake (Default) -->
+        <div class="cute-cake-view" id="cute-cake-view">
+          <div class="cute-cake-box" id="cute-cake-box">
+            
+            <!-- Candle Standing Upright ON TOP of Top Tier -->
+            <div class="candle-wrapper candle-interactive" id="candle-wrapper" title="Click to blow out the candle!">
+              <div class="candle-flame" id="candle-flame">
+                <div class="flame-glow"></div>
+                <div class="flame-body-wrap">
+                  <div class="flame-core"></div>
+                </div>
+              </div>
+              <div class="candle-wick"></div>
+              <div class="candle-stick"></div>
+              <div class="candle-smoke" id="candle-smoke"></div>
+            </div>
+
+            <!-- Top Tier (Smallest, 180px) -->
+            <div class="cake-tier tier-top" id="tier-top">
+              <div class="chocolate-drip-top"></div>
+              <div class="frosting-decor">
+                <span class="decor-item">🍓</span>
+                <span class="decor-item">✨</span>
+                <span class="decor-item">🍓</span>
+              </div>
+              <div class="tier-name-badge">Simmu ❤</div>
+            </div>
+
+            <!-- Middle Tier (Medium, 260px) -->
+            <div class="cake-tier tier-middle" id="tier-middle">
+              <div class="cream-piping"></div>
+              <div class="frosting-decor">
+                <span class="decor-item">💖</span>
+                <span class="decor-item">🌸</span>
+                <span class="decor-item">🍓</span>
+                <span class="decor-item">🌸</span>
+                <span class="decor-item">💖</span>
+              </div>
+            </div>
+
+            <!-- Bottom Tier (Widest, 340px) -->
+            <div class="cake-tier tier-bottom" id="tier-bottom">
+              <div class="chocolate-drip-bottom"></div>
+              <div class="frosting-decor">
+                <span class="decor-item">🌸</span>
+                <span class="decor-item">🍓</span>
+                <span class="decor-item">💖</span>
+                <span class="decor-item">🍓</span>
+                <span class="decor-item">🌸</span>
+              </div>
+            </div>
+
+            <!-- Golden Stand & Cake Plate -->
+            <div class="cake-plate" id="cake-plate">
+              <div class="plate-lip"></div>
+              <div class="plate-pedestal"></div>
+              <div class="plate-ambient-shadow"></div>
+            </div>
+
+            <!-- Animated Golden Cake Knife & Slice -->
+            <div class="cake-knife-swoosh" id="cake-knife">🔪</div>
+            <div class="cake-slice-cut" id="cake-slice-cut">
+              <span class="slice-emoji">🍰</span>
+              <span class="slice-sparkle">✨</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- View 2: Ultra-Realistic Grand Palace Photo Cake -->
+        <div class="luxury-cake-view hidden" id="luxury-cake-view">
+          <div class="cake-photo-wrapper">
+            <img src="assets/luxury_cake.jpg" alt="Birthday Cake for Simmu" class="luxury-cake-img" id="luxury-cake-img" />
+            
+            <!-- Interactive Realistic Flickering Candle Flame Overlay -->
+            <div class="interactive-candle-overlay candle-interactive" id="interactive-candle-overlay" title="Click to blow out the candle!">
+              <div class="candle-flame-glow" id="candle-flame-glow"></div>
+              <div class="candle-flame-body" id="candle-flame-body">
+                <div class="flame-inner-core"></div>
+              </div>
+              <div class="candle-smoke-plume" id="candle-smoke-plume"></div>
+            </div>
+
+            <div class="knife-slice-line" id="knife-slice-line"></div>
+          </div>
+        </div>
+
+        <!-- Aryan's Sweet Love Dedication -->
+        <div class="cake-message-banner">
+          <p class="cake-dedication-title">Happy Birthday, Meri Jaan Simmu ❤</p>
+          <p class="cake-dedication-sub">"Thank you for being my happiness, my love and my forever queen."</p>
+          <span class="cake-dedication-author">— Hamesha Sirf Tumhara, Aryan ❤</span>
+        </div>
+
+        <div class="cake-status-message" id="cake-status">
+          🕯️ The candle is burning bright for Simmu! Click the candle flame or the button below to blow it out.
+        </div>
+
+        <div class="cake-actions">
+          <button class="btn-glass pill-btn" id="blow-candle-btn">
+            <span>🌬️ Blow Candle & Make Wish</span>
+          </button>
+          <button class="btn-pink-gradient pill-btn disabled" id="cut-cake-btn" disabled>
+            <span>🔪 Cut The Cake!</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- The Grand Journey Unlock Banner (Revealed after cutting the cake!) -->
+      <div class="journey-unlock-banner glass-panel hidden" id="journey-unlock-banner">
+        <div class="sparkle-stars">✨ 🌟 ✨</div>
+        <h3 class="journey-banner-title">Ab Mera Hath Thaamo, Simmu...</h3>
+        <p class="journey-banner-desc">
+          Ab chalo mere sath... Hathon me hath daal kar, andheri khamosh sadak par, Chandigarh Rose Garden ki khushbuon me, pahadon ke sunrise tak aur humare forever proposal tak!
+        </p>
+        <button class="btn-pink-gradient big-glow-btn" id="begin-walk-btn">
+          <span>Walk Hand in Hand With Aryan</span>
+          <span class="heart-pulse">💖</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==============================================
+         SCREEN 7: THE GRAND SCROLL JOURNEY & 3D RING PROPOSAL
+         (Aryan & Simmu walking together hand in hand on scroll!)
+         ============================================== -->
+    <section id="screen-journey" class="journey-section hidden">
+      
+      <!-- STICKY COUPLE WALKING CONTAINER -->
+      <div class="walking-stage-sticky" id="walking-stage">
+        
+        <!-- Background Scene Layers (Crossfade with Scroll) -->
+        <div class="scene-layer scene-night-road active" id="scene-road">
+          <img src="assets/couple_night_road.jpg" alt="Empty Road at Night" class="scene-bg-img" />
+          <div class="scene-vignette"></div>
+        </div>
+
+        <div class="scene-layer scene-rose-garden" id="scene-garden">
+          <img src="assets/rose_garden.jpg" alt="Chandigarh Rose Garden" class="scene-bg-img" />
+          <div class="scene-vignette"></div>
+        </div>
+
+        <div class="scene-layer scene-mountain-sunrise" id="scene-mountain">
+          <img src="assets/mountain_sunrise.jpg" alt="Mountain Sunrise Adventure" class="scene-bg-img" />
+          <div class="scene-vignette"></div>
+        </div>
+
+        <div class="scene-layer scene-candlelight" id="scene-dinner">
+          <img src="assets/candlelight_dinner.jpg" alt="Candlelight Dinner Setup" class="scene-bg-img" />
+          <div class="scene-vignette"></div>
+        </div>
+
+        <!-- The Couple Silhouette Walking Sprite with Hand-in-Hand Glow -->
+        <div class="couple-walker-container" id="couple-walker">
+          <div class="walker-shadow"></div>
+          <div class="walker-glow"></div>
+          <div class="walker-avatar">
+            <svg viewBox="0 0 120 180" class="couple-svg" id="couple-svg">
+              <defs>
+                <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ff758c" />
+                  <stop offset="50%" stop-color="#ff7eb3" />
+                  <stop offset="100%" stop-color="#7928ca" />
+                </linearGradient>
+                <filter id="coupleGlow">
+                  <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                  <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+              <g class="couple-group" filter="url(#coupleGlow)">
+                <!-- Guy (Aryan) -->
+                <circle cx="45" cy="35" r="14" fill="url(#glowGrad)" />
+                <path d="M30 52 C30 45, 60 45, 60 52 L58 110 C58 115, 32 115, 32 110 Z" fill="url(#glowGrad)" />
+                <line x1="38" y1="110" x2="35" y2="165" stroke="url(#glowGrad)" stroke-width="7" stroke-linecap="round" class="leg guy-left-leg" />
+                <line x1="52" y1="110" x2="55" y2="165" stroke="url(#glowGrad)" stroke-width="7" stroke-linecap="round" class="leg guy-right-leg" />
+                
+                <!-- Girl (Simmu) -->
+                <circle cx="75" cy="40" r="13" fill="url(#glowGrad)" />
+                <path d="M62 56 C62 50, 88 50, 88 56 L94 112 C94 118, 56 118, 56 112 Z" fill="url(#glowGrad)" />
+                <line x1="68" y1="112" x2="65" y2="165" stroke="url(#glowGrad)" stroke-width="6" stroke-linecap="round" class="leg girl-left-leg" />
+                <line x1="82" y1="112" x2="85" y2="165" stroke="url(#glowGrad)" stroke-width="6" stroke-linecap="round" class="leg girl-right-leg" />
+                
+                <!-- Holding Hands Joint with pulsing heart -->
+                <path d="M52 75 Q60 85 68 75" stroke="#ffffff" stroke-width="5" stroke-linecap="round" fill="none" />
+                <circle cx="60" cy="80" r="4" fill="#ff2d75" class="held-hands-heart" />
+              </g>
+            </svg>
+          </div>
+          <div class="holding-hands-tag">
+            <span>Aryan & Simmu &bull; Hathon Mein Hath ❤</span>
+          </div>
+        </div>
+
+        <!-- Scroll Progress Tracker Pill -->
+        <div class="journey-nav-pill glass-pill">
+          <span class="step-dot active" data-step="1" title="Midnight Road"></span>
+          <span class="step-line"></span>
+          <span class="step-dot" data-step="2" title="Chandigarh Rose Garden"></span>
+          <span class="step-line"></span>
+          <span class="step-dot" data-step="3" title="Mountain Sunrise"></span>
+          <span class="step-line"></span>
+          <span class="step-dot" data-step="4" title="3D Ring Proposal"></span>
+        </div>
+
+      </div>
+
+      <!-- SCROLLABLE STORY NARRATIVE SECTIONS -->
+      <div class="story-scroll-track">
+
+        <!-- MILESTONE 1: MIDNIGHT ROAD -->
+        <div class="story-checkpoint" id="checkpoint-1">
+          <div class="story-text-card glass-panel">
+            <span class="story-badge">Chapter 1 &bull; Midnight Road</span>
+            <h3 class="story-headline">Walking on the Empty Road at Night</h3>
+            <p class="story-quote">
+              "तारे चमक रहे हों, हरी-भरी ठंडी हवाएं हों, और तुम्हारा हाथ मेरे हाथ में हो Simmu..."
+            </p>
+            <p class="story-desc">
+              Jab poori duniya so rahi hoti hai, tab bas tum aur main hote hain. Mujhe tumhare sath bina kisi manzil ki fikar kiye bas chalte jaana hai... Kyunki jahan tum ho, wahi mera sukoon hai.
+            </p>
+            <div class="checkpoint-shayari-box">
+              <p>"ना हो हाथों में हाथ फिर भी एक आस रहने दो, ज़रूर मिलेंगे कभी, दिल में ये एहसास रहने दो.. 💕"</p>
+            </div>
+            <div class="scroll-down-hint">
+              <span>Scroll to walk with me into the garden</span>
+              <span class="arrow-down">↓</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MILESTONE 2: CHANDIGARH ROSE GARDEN -->
+        <div class="story-checkpoint" id="checkpoint-2">
+          <div class="story-text-card glass-panel">
+            <span class="story-badge">Chapter 2 &bull; Rose Garden Dreams</span>
+            <h3 class="story-headline">Strolling in Chandigarh Rose Garden</h3>
+            <p class="story-quote">
+              "Chandigarh ke Rose Garden ke hazaron gulabon me... sabse khoobsurat phool sirf tum ho Simmu."
+            </p>
+            <p class="story-desc">
+              Fairy lights se saje gulabi raste, hawa me girti gulab ki pankhudiyan aur tumhari pyari si muskaan. Tumhari khushbu meri har ek saans ko mehkati hai.
+            </p>
+            <div class="checkpoint-shayari-box">
+              <p>"काश तुम पूछो मुझे क्या चाहिए... मैं पकडूं हाथ आपका और कहूं सिर्फ तेरा साथ चाहिए। 🌹❤️"</p>
+            </div>
+            <div class="scroll-down-hint">
+              <span>Scroll to climb the sunrise mountains</span>
+              <span class="arrow-down">↓</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MILESTONE 3: MOUNTAIN SUNRISE & ADVENTURE -->
+        <div class="story-checkpoint" id="checkpoint-3">
+          <div class="story-text-card glass-panel">
+            <span class="story-badge">Chapter 3 &bull; Mountains & Adventures</span>
+            <h3 class="story-headline">Pahadon Ka Sunrise & Endless Safar</h3>
+            <p class="story-quote">
+              "Main tumhare sath har ek pahad chadhna chahta hoon Simmu, har nayi subah ka suraj dekhna chahta hoon."
+            </p>
+            <p class="story-desc">
+              Pahadon ki thandi hawayen, badalon ke upar aati sunahri dhoop, aur haathon me hath daale hum dono. Mujhe tumhare sath har vo adventure explore karna hai jo maine socha hai!
+            </p>
+            <div class="checkpoint-shayari-box">
+              <p>"सारी दुनिया से किनारा कर के, हमने रखा है खुद को सिर्फ तुम्हारा कर के 🥀❣️"</p>
+            </div>
+            <div class="scroll-down-hint">
+              <span>Scroll to our special destination</span>
+              <span class="arrow-down">↓</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MILESTONE 4: 3D DIAMOND RING & MARRIAGE PROPOSAL -->
+        <div class="story-checkpoint" id="checkpoint-4">
+          <div class="story-text-card glass-panel proposal-card-wrap">
+            <span class="story-badge proposal-badge">The Ultimate Surprise &bull; Aryan To Simmu</span>
+            <h3 class="story-headline proposal-title">Candle Light Dinner & Marriage Proposal 💍</h3>
+            <p class="story-quote">
+              "जब अपनी पसंद से शादी हो जाये, तो उससे बेहतर कोई पल नहीं होता! 🥰💍"
+            </p>
+
+            <!-- 3D INTERACTIVE DIAMOND RING CANVAS STAGE -->
+            <div class="ring-stage-container" id="ring-stage-container">
+              <div class="ring-canvas-wrapper" id="ring-canvas-wrapper">
+                <canvas id="three-ring-canvas"></canvas>
+                <div class="ring-sparkle-halo"></div>
+              </div>
+              <p class="ring-interaction-hint">✨ Drag to rotate Simmu's 3D Diamond Ring ✨</p>
+            </div>
+
+            <div class="proposal-box glass-sub-bar">
+              <h4>Simmu, Will You Marry Me? 💍</h4>
+              <p class="question-text">
+                "Will you spend the rest of your life with Aryan? Walk every road, climb every mountain, and be my forever adventure partner in marriage?"
+              </p>
+
+              <div class="proposal-buttons">
+                <button class="btn-pink-gradient proposal-yes-btn" id="proposal-yes-1">
+                  <span>YES Aryan, A Million Times YES! 💍</span>
+                </button>
+                <button class="btn-pink-gradient proposal-yes-btn" id="proposal-yes-2">
+                  <span>Hamesha Ke Liye Tumhari! 💖</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Confirmation & Official Engagement / Golden Date Ticket -->
+            <div class="golden-ticket-wrap hidden" id="golden-ticket">
+              <div class="golden-ticket">
+                <div class="ticket-sparkle">✨ OFFICIAL ENGAGEMENT & FOREVER LOVE PLEDGE ✨</div>
+                <h4 class="ticket-title">Aryan & His Simmu &bull; Forever Sealed</h4>
+                <div class="ticket-row">
+                  <span>Partner 1:</span>
+                  <strong>Aryan (Your Forever Boy)</strong>
+                </div>
+                <div class="ticket-row">
+                  <span>Partner 2:</span>
+                  <strong>Simmu (The Birthday Queen)</strong>
+                </div>
+                <div class="ticket-row">
+                  <span>The Promise:</span>
+                  <strong>Hathon me hath daal kar poori duniya ghumna</strong>
+                </div>
+                <div class="ticket-row">
+                  <span>Validity:</span>
+                  <strong>Saat Janam & Till The End of Time ♾️</strong>
+                </div>
+                <div class="ticket-stamp">ARYAN & SIMMU • YES, WE ARE GETTING MARRIED! 💍❤</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ==============================================
+       LOVE VAULT / HIDDEN SURPRISES & SHAYARI MODAL
+       ============================================== -->
+  <div class="modal-backdrop hidden" id="vault-modal">
+    <div class="glass-card vault-card">
+      <div class="vault-header">
+        <h3 class="vault-title">💌 Dil Ki Shayari & Secret Love Vault</h3>
+        <button class="modal-close" id="close-vault-btn">&times;</button>
+      </div>
+      <p class="vault-subtitle">Handpicked Shayaris from LoveShayari24 & Redeemable Love Coupons for Simmu</p>
+
+      <!-- Love Shayari Tabs -->
+      <div class="shayari-collection-grid">
+        <div class="shayari-card">
+          <p>"मेरा पागल सा प्यार हो तुम, मेरे इस दिल के इकलौते हकदार हो तुम."</p>
+          <span>— LoveShayari24.in</span>
+        </div>
+        <div class="shayari-card">
+          <p>"सुनो जान मेरी एक बात मान लो, सफर लम्बा है हाथ थाम लो..!"</p>
+          <span>— LoveShayari24.in</span>
+        </div>
+        <div class="shayari-card">
+          <p>"बहुत होंगे दुनिया में चाहने वाले तुझे, लेकिन मेरे लिए तू ही मेरी पूरी दुनिया है।"</p>
+          <span>— LoveShayari24.in</span>
+        </div>
+        <div class="shayari-card">
+          <p>"सारी दुनिया से किनारा कर के, हमने रखा है खुद को सिर्फ तुम्हारा कर के 🥀❣️"</p>
+          <span>— LoveShayari24.in</span>
+        </div>
+        <div class="shayari-card">
+          <p>"काश तुम पूछो मुझे क्या चाहिए... मैं पकडूं हाथ आपका और कहूं सिर्फ तेरा साथ चाहिए। 💕"</p>
+          <span>— LoveShayari24.in</span>
+        </div>
+        <div class="shayari-card">
+          <p>"जब अपनी पसंद से शादी हो जाये, तो उससे बेहतर कोई पल नहीं होता! 🥰💍"</p>
+          <span>— LoveShayari24.in</span>
+        </div>
+      </div>
+
+      <h4 class="vault-coupons-title">🎁 Simmu's Lifetime Love Coupons</h4>
+      <div class="coupons-grid">
+        <!-- Coupon 1 -->
+        <div class="coupon-card">
+          <div class="coupon-badge">COUPON #01</div>
+          <div class="coupon-icon">🍦</div>
+          <h4>Midnight Ice Cream & Long Drive</h4>
+          <p>Late night drive par chalna, ice cream khana aur gaane sunna.</p>
+          <button class="coupon-redeem-btn" onclick="redeemCoupon(this, 'Midnight Ice Cream')">Redeem Now ❤</button>
+        </div>
+
+        <!-- Coupon 2 -->
+        <div class="coupon-card">
+          <div class="coupon-badge">COUPON #02</div>
+          <div class="coupon-icon">🫂</div>
+          <h4>Unlimited Warm Hugs & Forehead Kisses</h4>
+          <p>Jab bhi udaas ho ya thak jaao, Aryan ka gale lagna hamesha ready hai.</p>
+          <button class="coupon-redeem-btn" onclick="redeemCoupon(this, 'Unlimited Hugs')">Redeem Now ❤</button>
+        </div>
+
+        <!-- Coupon 3 -->
+        <div class="coupon-card">
+          <div class="coupon-badge">COUPON #03</div>
+          <div class="coupon-icon">👑</div>
+          <h4>Simmu Wins Every Single Argument</h4>
+          <p>Yeh card dikhate hi Simmu 100% sahi hai, chahe kuch bhi ho!</p>
+          <button class="coupon-redeem-btn" onclick="redeemCoupon(this, 'Win Every Argument')">Redeem Now ❤</button>
+        </div>
+
+        <!-- Coupon 4 -->
+        <div class="coupon-card">
+          <div class="coupon-badge">COUPON #04</div>
+          <div class="coupon-icon">🌄</div>
+          <h4>Spontaneous Mountain Sunrise Getaway</h4>
+          <p>Bags pack karke seedha pahadon me sunrise dekhne chalenge.</p>
+          <button class="coupon-redeem-btn" onclick="redeemCoupon(this, 'Mountain Getaway')">Redeem Now ❤</button>
+        </div>
+      </div>
+
+      <div class="vault-footer">
+        <p>I love you to the moon and beyond, Simmu &bull; Forever Yours, Aryan ✨</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Memory Modal (For Photo Enlarge / Notes) -->
+  <div class="modal-backdrop hidden" id="photo-modal">
+    <div class="glass-card photo-modal-card">
+      <button class="modal-close" id="close-photo-btn">&times;</button>
+      <div class="modal-photo-img-wrap">
+        <img id="modal-photo-img" src="" alt="Memory" />
+      </div>
+      <h3 id="modal-photo-title" class="modal-photo-title"></h3>
+      <p id="modal-photo-desc" class="modal-photo-desc"></p>
+    </div>
+  </div>
+
+  <!-- Firebase App & Firestore SDKs for Live Realtime Telemetry -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="tracking.js"></script>
+
+  <script src="audio.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

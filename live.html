@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aryan's Live Love Radar 🛰️❤ | Realtime Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="live.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛰️</text></svg>" />
+</head>
+<body class="radar-body">
+  <div class="radar-grid-bg"></div>
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+
+  <!-- TOP HEADER -->
+  <header class="radar-header glass-card">
+    <div class="header-left">
+      <div class="radar-pulse-icon">
+        <span class="pulse-ring"></span>
+        <span class="pulse-dot"></span>
+      </div>
+      <div>
+        <h1 class="radar-title">Aryan's Live Love Radar <span class="heart-pulse">❤</span></h1>
+        <p class="radar-subtitle">Live real-time monitoring of Simmu's birthday experience</p>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <div class="live-status-pill" id="live-status-pill">
+        <span class="status-indicator-dot online" id="status-dot"></span>
+        <span class="status-text" id="status-text">Connecting to Live Feed...</span>
+      </div>
+      <button class="sound-toggle-btn" id="sound-toggle-btn" title="Toggle Sound Alert on new events">
+        <span id="sound-icon">🔔</span>
+        <span id="sound-label">Sound On</span>
+      </button>
+      <a href="index.html" target="_blank" class="view-site-btn">
+        <span>Open Birthday Page</span>
+        <span>↗</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN DASHBOARD CONTENT -->
+  <main class="dashboard-grid">
+    
+    <!-- LEFT COLUMN: LIVE TELEMETRY & STATS -->
+    <section class="telemetry-col">
+      
+      <!-- HERO STATUS CARD: SIMMU'S LIVE LOCATION -->
+      <div class="glass-card current-location-card">
+        <div class="card-tag">🛰️ CURRENT LOCATION ON PAGE</div>
+        <div class="current-screen-badge" id="current-screen-badge">
+          <span class="screen-icon" id="current-screen-icon">📍</span>
+          <div class="screen-info">
+            <h2 id="current-screen-title">Waiting for Simmu to visit...</h2>
+            <p id="current-screen-desc">No active session detected</p>
+          </div>
+        </div>
+
+        <div class="scroll-progress-wrap">
+          <div class="progress-labels">
+            <span>Scroll Progress</span>
+            <strong id="scroll-percent-text">0%</strong>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progress-bar-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROPOSAL & MILESTONES SUMMARY -->
+      <div class="glass-card milestones-card">
+        <div class="card-tag">💍 SPECIAL MILESTONES</div>
+
+        <div class="proposal-status-banner" id="proposal-status-banner">
+          <div class="proposal-icon" id="proposal-icon">💍</div>
+          <div class="proposal-text">
+            <h3 id="proposal-title">Proposal Status: Waiting for the dinner scene...</h3>
+            <p id="proposal-desc">Simmu hasn't reached the 3D ring yet.</p>
+          </div>
+        </div>
+
+        <div class="milestone-grid">
+          <div class="milestone-pill" id="m-candle">
+            <span class="m-icon">🕯️</span>
+            <div>
+              <strong>Candle Flame</strong>
+              <small id="m-candle-status">Burning</small>
+            </div>
+          </div>
+
+          <div class="milestone-pill" id="m-cake">
+            <span class="m-icon">🎂</span>
+            <div>
+              <strong>Cake Cut</strong>
+              <small id="m-cake-status">Uncut</small>
+            </div>
+          </div>
+
+          <div class="milestone-pill" id="m-music">
+            <span class="m-icon">🎵</span>
+            <div>
+              <strong>"Tumhi Dekho Na"</strong>
+              <small id="m-music-status">Playing</small>
+            </div>
+          </div>
+
+          <div class="milestone-pill" id="m-letter">
+            <span class="m-icon">💌</span>
+            <div>
+              <strong>Aryan's Letter</strong>
+              <small id="m-letter-status">Sealed</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEVICE & SESSION METRICS -->
+      <div class="glass-card session-metrics-card">
+        <div class="card-tag">📱 DEVICE & SESSION DETAILS</div>
+        <div class="metrics-row">
+          <div class="metric-item">
+            <span>Device</span>
+            <strong id="session-device">-</strong>
+          </div>
+          <div class="metric-item">
+            <span>Screen Resolution</span>
+            <strong id="session-resolution">-</strong>
+          </div>
+          <div class="metric-item">
+            <span>Started At</span>
+            <strong id="session-started">-</strong>
+          </div>
+          <div class="metric-item">
+            <span>Last Activity</span>
+            <strong id="session-last-seen">Just now</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEND LIVE LOVE PING TO SIMMU'S SCREEN -->
+      <div class="glass-card ping-action-card">
+        <div class="card-tag">💌 SEND INSTANT SURPRISE PING TO HER SCREEN</div>
+        <p class="ping-sub">Click any button below to pop up a live love notification on Simmu's screen right now!</p>
+        
+        <div class="quick-ping-buttons">
+          <button class="btn-quick-ping" onclick="sendLovePing('Aryan is looking at you and smiling right now! ❤')">
+            💖 "I'm smiling looking at you!"
+          </button>
+          <button class="btn-quick-ping" onclick="sendLovePing('You are the most beautiful girl in this whole world, Simmu! ✨')">
+            👑 "You are the most beautiful!"
+          </button>
+          <button class="btn-quick-ping" onclick="sendLovePing('Can\'t wait to hold your hands forever, baby! 💍')">
+            💍 "Can't wait to hold your hands!"
+          </button>
+        </div>
+
+        <div class="custom-ping-form">
+          <input type="text" id="custom-ping-input" placeholder="Type a custom message for Simmu..." />
+          <button class="btn-send-custom" id="send-custom-ping-btn">Send 💖</button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- RIGHT COLUMN: REALTIME TIMELINE FEED -->
+    <section class="feed-col glass-card">
+      <div class="feed-header">
+        <div class="feed-title-wrap">
+          <h2 class="feed-title">Realtime Activity Stream ⚡</h2>
+          <span class="live-counter-badge" id="event-counter">0 events</span>
+        </div>
+        
+        <div class="feed-controls">
+          <button class="btn-clear-feed" id="clear-feed-btn" title="Clear all past events for a fresh test">
+            🗑️ Clear Feed
+          </button>
+        </div>
+      </div>
+
+      <!-- Event Filters -->
+      <div class="feed-filters">
+        <button class="filter-chip active" data-filter="all">All Events</button>
+        <button class="filter-chip" data-filter="milestone">🎯 Milestones</button>
+        <button class="filter-chip" data-filter="photo_click">📸 Photos</button>
+        <button class="filter-chip" data-filter="navigation">📍 Navigation</button>
+        <button class="filter-chip" data-filter="proposal_accepted">💍 Proposal</button>
+      </div>
+
+      <!-- Events Stream Container -->
+      <div class="events-timeline" id="events-timeline">
+        <div class="empty-feed-placeholder" id="empty-feed-placeholder">
+          <div class="pulsing-radar-circle"></div>
+          <p>Listening for Simmu's live clicks & scrolls...</p>
+          <small>Open the birthday page in another window to see live events streaming here!</small>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Firebase App & Firestore SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="live.js"></script>
+</body>
+</html>
